@@ -9,6 +9,12 @@ Distributes an application as a Docker image with minimal dependencies.
 
 ## Usage
 
+### Prerequisites
+
+* [docker](https://www.docker.com/) is installed;
+
+### Instructions
+
 Execute:
 
     $ ./build.sh
