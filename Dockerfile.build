@@ -1,0 +1,10 @@
+FROM node:6.5.0-slim
+
+WORKDIR /app/
+
+COPY package.json /app/
+RUN npm install
+
+COPY . /app/
+
+RUN npm run build
