@@ -11,7 +11,7 @@ mkdir $TARGET
 # Build artifacts
 docker build -t $TAG_BUILD -f Dockerfile.build .
 
-# Create temporary container to copy artifacts
+# Create a temporary container to copy artifacts
 id=$(docker create $TAG_BUILD)
 
 # Copy artifacts to the workspace
@@ -20,5 +20,5 @@ docker cp $id:/app/dist/. $TARGET
 # Remove the temporary container
 docker rm -v $id
 
-# Build a lightweight image using artifacts
+# Build a lightweight image and reuse artifacts
 docker build -t $TAG .
