@@ -1,3 +1,3 @@
-FROM sebp/lighttpd
+FROM fnichol/uhttpd
 
-ADD build /var/www/localhost/htdocs
+ADD build /www
