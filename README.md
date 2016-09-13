@@ -7,7 +7,7 @@ Distributes an application as a Docker image with minimal dependencies.
 | Image                                   | Size     |
 |-----------------------------------------|----------|
 | microcontainer-build (Dockerfile.build) | 265.1 MB |
-| microcontainer (Dockerfile)             | 16 MB    |
+| microcontainer (Dockerfile)             | 7.4 MB   |
 
 ## Usage
 

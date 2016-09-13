@@ -1,3 +1,3 @@
-FROM smebberson/alpine-nginx
+FROM sebp/lighttpd
 
-ADD build /usr/html/
+ADD build /var/www/localhost/htdocs
