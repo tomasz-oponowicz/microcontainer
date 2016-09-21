@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 
-# Set first argument if defined; Otherwise "microcontainer".
+#
+# Usage: ./build.sh <tag> <src>
+#
+# <tag>  a tag of a final image, default is "microcontainer"
+# <src>  a source path in a build image to copy, default is "/app/dist/."
+#
+
 TAG=${1:-microcontainer}
 TAG_BUILD="$TAG-build"
-TARGET="build"
+SRC=${2:-/app/dist/.}
+DEST="build"
 
-rm -R $TARGET
-mkdir $TARGET
+rm -R $DEST
+mkdir $DEST
 
 # Build artifacts
 docker build -t $TAG_BUILD -f Dockerfile.build .
@@ -15,7 +22,7 @@ docker build -t $TAG_BUILD -f Dockerfile.build .
 id=$(docker create $TAG_BUILD)
 
 # Copy artifacts to the workspace
-docker cp $id:/app/dist/. $TARGET
+docker cp $id:$SRC $DEST
 
 # Remove the temporary container
 docker rm -v $id
