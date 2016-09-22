@@ -31,11 +31,11 @@ Execute:
     $ ../build.sh
     $ docker run -p 80:80 microcontainer
 
-...it's possible to define a custom name and artifacts path, for example:
+...it's possible to define a custom name, tag and artifacts path, for example:
 
     $ cd ./example
-    $ ../build.sh mytag /workspace/.
-    $ docker run -p 80:80 mytag
+    $ ../build.sh myproject 1.0 /workspace/.
+    $ docker run -p 80:80 myproject:1.0
 
 ...more information in the `build.sh` file.
 

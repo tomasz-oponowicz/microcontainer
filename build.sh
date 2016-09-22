@@ -1,25 +1,31 @@
 #!/usr/bin/env bash
 
 #
-# Usage: ./build.sh <tag> <src>
+# Usage: ./build.sh <name> <tag> <src>
 #
-# <tag>  a tag of a final image, default is "microcontainer"
-# <src>  a source path in a build image to copy, default is "/app/dist/."
+# <name> a repository name of a final image, default is "microcontainer"
+# <tag>  a version, default is "latest"
+# <src>  a path used to copy artifacts from a build image, default is "/app/dist/."
 #
 
-TAG=${1:-microcontainer}
-TAG_BUILD="$TAG-build"
-SRC=${2:-/app/dist/.}
+set -e
+
+NAME=${1:-microcontainer}
+NAME_BUILD="$NAME-build"
+TAG=${2:-latest}
+SRC=${3:-/app/dist/.}
 DEST="build"
 
-rm -R $DEST
+echo "Building $NAME:$TAG from `pwd`"
+
+rm -Rf $DEST
 mkdir $DEST
 
 # Build artifacts
-docker build -t $TAG_BUILD -f Dockerfile.build .
+docker build -t $NAME_BUILD:$TAG -f Dockerfile.build .
 
 # Create a temporary container to copy artifacts
-id=$(docker create $TAG_BUILD)
+id=$(docker create $NAME_BUILD:$TAG)
 
 # Copy artifacts to the workspace
 docker cp $id:$SRC $DEST
@@ -28,4 +34,4 @@ docker cp $id:$SRC $DEST
 docker rm -v $id
 
 # Build a lightweight image and reuse artifacts
-docker build -t $TAG .
+docker build -t $NAME:$TAG .
