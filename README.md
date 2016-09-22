@@ -10,7 +10,7 @@ The solution is to split responsibilities between `Dockerfile.build` and `Docker
 
 `Dockerfile` is an execution environment. Artifacts, from the previous image, are copied here. Development tools aren't included which allows you to create a ridiculously small image.
 
-The final image is very lightweight:
+The `example` directory contains a sample use case. This is a React application which requires development tools during build time. Thanks to the script the final image is very lightweight:
 
 | Image                                   | Size     |
 |-----------------------------------------|----------|
@@ -27,17 +27,19 @@ The final image is very lightweight:
 
 Execute:
 
-    $ ./build.sh
+    $ cd ./example
+    $ ../build.sh
     $ docker run -p 80:80 microcontainer
 
-...it's possible to define custom tag and source path, for example:
+...it's possible to define a custom name and artifacts path, for example:
 
-    $ ./build.sh mytag /workspace/.
+    $ cd ./example
+    $ ../build.sh mytag /workspace/.
     $ docker run -p 80:80 mytag
 
 ...more information in the `build.sh` file.
 
 ## What's next
 
-Feel free to adjust `Dockerfile.build` and `Dockerfile` to your needs.
+Feel free to test it against your `Dockerfile.build` and `Dockerfile`.
 
