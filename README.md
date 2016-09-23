@@ -1,6 +1,6 @@
 # Microcontainer
 
-A small script which helps you shrink a size of a Docker image.
+A small script which helps you shrink size of Docker images.
 
 Unfortunately Docker doesn't solve the problem of large images out of the box. [Squashing images](https://github.com/jwilder/docker-squash) can help but it forces you to include extra cleanup commands. Sometimes this can be a headache.
 
